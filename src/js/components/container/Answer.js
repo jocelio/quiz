@@ -10,15 +10,7 @@ class Answer extends Component {
   }
 
   setAnswerStatement(){
-    this.props.setAnswerStatement(this.props.newQuiz, {...this.state, isRightAnswer}, this.props.parentUid, this.props.uid)
-  }
-
-  onChangeSelect(event){
-
-    if(_.isEmpty(this.state.inputValue) || _.isNil(event.target.value)){
-      return;
-    }
-    this.setAnswerStatement(event.target.value);
+    this.props.setAnswerStatement(this.props.newQuiz, {...this.state, correctAnswer: this.props.correctAnswer}, this.props.parentUid, this.props.uid)
   }
 
   render() {
@@ -29,29 +21,12 @@ class Answer extends Component {
       <div className="row answer-row">
 
       <div className="col-md-8">
-        <input type="text" className="form-control" placeholder="Answer" defaultValue={inputValue}
-        onChange={event => this.setState({ inputValue: event.target.value })} disabled={filled}
+        <input type="text" className={`form-control ${this.props.correctAnswer?'correct-answer-input':'wrong-answer-input'}`} placeholder={this.props.correctAnswer?'Right Answer':'Answer'} defaultValue={inputValue}
+        onChange={event => this.setState({ inputValue: event.target.value })}
+        
+        onBlur={() => this.setAnswerStatement()}
         required/>
       </div>
-
-      <div className="col-md-2 right-response-check" >
-        <select className="form-control" onChange={event => this.onChangeSelect(event)}
-        defaultValue={isRightAnswer} disabled={filled} required>
-            <option defaultValue={null}>-- Select--</option>
-            <option defaultValue={false}>Wrong</option>
-            <option defaultValue={true}>Right</option>
-        </select>
-      </div>
-
-      {filled &&
-      <div className="col-md-2 right-response-check" >
-        <button type="button" className="btn btn-default" >
-          Remove
-        </button>
-      </div>
-    }
-
-
 
       </div>
     );

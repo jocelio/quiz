@@ -24,7 +24,11 @@ export function createAnswer(quiz, questionUid, answer){
 
     const q = _(quiz.questions)
         .filter(q => q.props.uid == questionUid)
-        .map(q => ({...q, props: {...q.props, answers: [...q.props.answers || {}, answer]}}))
+        .map(q => {
+          return (_.isArray(answer))
+                    ?{...q, props: {...q.props, answers: [...q.props.answers || {}, ...answer]}}
+                    :{...q, props: {...q.props, answers: [...q.props.answers || {}, answer]}}
+        })
         .head()
 
     const questions = [...quiz.questions.filter(f => f.props.uid != questionUid) || {}, q]
@@ -55,7 +59,7 @@ export function setAnswerStatement(quiz, answerStatements, questionUid, answerUi
   const question = _(quiz.questions)
                 .filter(q => q.props.uid == questionUid)
                 .head();
-
+console.log(question)
   const answer = _(question.props.answers)
                 .filter(a => a.props.uid == answerUid)
                 .map(q => ({...q, props: {...q.props, answerStatements: answerStatements}}))

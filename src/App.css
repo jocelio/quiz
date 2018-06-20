@@ -37,6 +37,13 @@
   margin-bottom: 2px;
 }
 
+.correct-answer-input{
+  border: 1px solid #28a745;
+}
+.wrong-answer-input{
+  border: 1px solid red;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

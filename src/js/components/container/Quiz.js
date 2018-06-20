@@ -23,7 +23,13 @@ class Quiz extends Component {
   }
 
   save(){
-    alert('oiz')
+    const questions = this.props.newQuiz.questions
+    questions.forEach(q => {
+        console.log(q.props.statement)
+        q.props.answers.forEach(a => {
+          console.log(a.props.answerStatements.inputValue, a.props.answerStatements.correctAnswer )
+        })
+    })
   }
 
   render() {
