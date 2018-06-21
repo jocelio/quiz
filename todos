@@ -6,7 +6,7 @@ ok - When choosing a quiz, the user will be redirected to a page where he will l
 ok - When answering a question, you must tell whether the choice is correct or not;
 ok - Each question must have at least 4 answers, one of them being the correct answer;
 ok - Npm or yarn should be used to manage the dependencies;
-Create a README with installation guidelines;
+ok - Create a README with installation guidelines;
 ok - Choose a theme (Bootstrap, Foundation...);
 ok - Use third-party libraries;
 ok - Choose how you will save the data (local storage, database, json...);

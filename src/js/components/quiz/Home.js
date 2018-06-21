@@ -19,6 +19,7 @@ class Home extends Component {
   render() {
     return (
         <div>
+         <h3>Quiz</h3>
           <ul>
               {_.map(this.props.quizzes, q => (<li key={q.uid}><Link to={`/quiz/${q.uid}`}>{q.quizName}</Link></li>))}
           </ul>
