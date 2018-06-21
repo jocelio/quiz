@@ -35,7 +35,7 @@ class Question extends Component {
             <input type="statement" className="form-control" id="question-statement" placeholder="Question text..."
             defaultValue={this.props.statement}
             onBlur={event => this.setQuestionStatement(event.target.value)}/>
-            <hr/>
+
             <strong>Answers</strong>
             {this.renderAnswer()}
 
