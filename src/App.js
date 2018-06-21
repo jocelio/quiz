@@ -3,6 +3,9 @@ import NewQuiz from "./js/components/new-quiz/NewQuiz";
 import Quiz from "./js/components/quiz/Quiz";
 import Home from "./js/components/quiz/Home";
 import { Switch, Route, Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './App.css';
 
 const Main = () => (
@@ -39,6 +42,7 @@ class App extends Component {
                     <Main />
               </div>
           </div>
+          <ToastContainer />
       </div>
     );
   }

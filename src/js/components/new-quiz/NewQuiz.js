@@ -4,6 +4,7 @@ import _ from 'lodash'
 import uuidv1 from 'uuid/v1';
 import Question from './Question'
 import { createQuiz, createQuestion, saveQuiz } from '../../actions/quizActions'
+import { toast } from 'react-toastify';
 
 
 class NewQuiz extends Component {
@@ -19,7 +20,9 @@ class NewQuiz extends Component {
 
   createQuiz(){
       if(_.isEmpty(this.state.quizName)){
-        alert('Quiz name is required')
+        toast.warn("Quiz name is required", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         return;
       }
      this.props.createQuiz(this.state.quizName);
@@ -38,10 +41,11 @@ class NewQuiz extends Component {
     }).value()
 
     const noAnswers = _(questions).filter(q => _.isEmpty(q.answers)).value();
-    console.log(questions)
-    console.log(noAnswers)
+    
     if(!_.isEmpty(noAnswers)){
-      alert('All questions must have its answers.')
+      toast.warn("All questions must have its answers", {
+        position: toast.POSITION.TOP_RIGHT
+      });
       return;
     }
 
@@ -51,7 +55,10 @@ class NewQuiz extends Component {
 
     this.props.saveQuiz({quizName, uid, questions})
 
-    alert('Quiz saved!')
+    toast.success("Quiz saved!", {
+      position: toast.POSITION.TOP_RIGHT
+    });
+
   }
 
   render() {
