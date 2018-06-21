@@ -1,2 +1,5 @@
 ## Installation guidelines
-npm install --save-dev
+Install dependencies
+  npm install --save-dev
+Run
+  npm start
