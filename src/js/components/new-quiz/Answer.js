@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
+import React, { Component } from "react"
+import { connect } from 'react-redux'
+import _ from 'lodash'
 import { setAnswerStatement } from '../../actions/quizActions'
-
 
 class Answer extends Component {
 
