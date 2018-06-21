@@ -36,13 +36,31 @@
   padding: 2px;
   margin-bottom: 2px;
 }
+.answer-container{
+  padding-left: 5px;
+}
 
 .correct-answer-input{
   border: 1px solid #28a745;
 }
+
 .wrong-answer-input{
   border: 1px solid red;
 }
+
+.correct-answer{
+  color: green;
+  padding-left: 28px;
+}
+.wrong-answer{
+  color: red;
+  padding-left: 28px;
+}
+.fade-answer{
+  color:#9c9b9b;
+  padding-left: 28px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

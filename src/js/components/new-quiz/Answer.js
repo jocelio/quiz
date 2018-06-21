@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { setAnswerStatement } from '../../actions/quizActions'
 
+
 class Answer extends Component {
 
   constructor() {
     super();
     this.state = {inputValue: '', isRightAnswer:false}
+    this.timeout =  0;
   }
 
-  setAnswerStatement(){
-    this.props.setAnswerStatement(this.props.newQuiz, {...this.state, correctAnswer: this.props.correctAnswer}, this.props.parentUid, this.props.uid)
+  setAnswerStatement(inputValue){
+    this.props.setAnswerStatement(this.props.newQuiz, {...inputValue, correctAnswer: this.props.correctAnswer}, this.props.parentUid, this.props.uid)
+  }
+
+  onChange(event){
+    const inputValue = event.target.value;
+    this.setAnswerStatement({ inputValue })
   }
 
   render() {
@@ -22,9 +29,7 @@ class Answer extends Component {
 
       <div className="col-md-8">
         <input type="text" className={`form-control ${this.props.correctAnswer?'correct-answer-input':'wrong-answer-input'}`} placeholder={this.props.correctAnswer?'Right Answer':'Answer'} defaultValue={inputValue}
-        onChange={event => this.setState({ inputValue: event.target.value })}
-        
-        onBlur={() => this.setAnswerStatement()}
+        onBlur={event => this.onChange(event)}
         required/>
       </div>
 

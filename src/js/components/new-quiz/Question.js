@@ -14,7 +14,7 @@ class Question extends Component {
 
   addAnswer(){
     const question = _(this.props.newQuiz.questions).filter(q => q.props.uid == this.props.uid ).head()
-    const answers = _.isNil(question.props.answers)? _.range(0, 2)
+    const answers = _.isNil(question.props.answers)? _.range(0, 4)
     .map(i => <Answer correctAnswer={i == 0} key={i} uid={uuidv1()} parentUid={this.props.uid}/>) : <Answer uid={uuidv1()} parentUid={this.props.uid}/>
     this.props.createAnswer(this.props.newQuiz, this.props.uid, answers)
   }
@@ -57,8 +57,8 @@ class Question extends Component {
 
     return(
       <div>
-        { _.map(that.props.answers, a =>
-          <span key={uuidv1()}>
+        { _.map(that.props.answers, (a, i) =>
+          <span key={i}>
             {a}
           </span>
         )}

@@ -1,15 +1,21 @@
 import _ from 'lodash'
+import uuidv1 from 'uuid/v1';
+import CryptoJS from 'crypto-js'
 
 export const CREATE_QUIZ = 'FETCH_QUIZ';
 export const CREATE_QUESTION = 'CREATE_QUESTION'
 export const SET_QUESTION_STATEMENT = 'SET_QUESTION_STATEMENT'
 export const CREATE_ANSWER='CREATE_ANSWER'
 export const SET_ANSWER_STATEMENT= 'SET_ANSWER_STATEMENT'
+export const SAVE_QUIZ='SAVE_QUIZ';
+export const LOAD_QUIZZES='LOAD_QUIZZES'
+
+const KEY = '5db62d50-74ab-11e8-99c8-07a12d3b99f3'
 
 export function createQuiz(quizName){
     return {
         type: CREATE_QUIZ,
-        payload: {quizName}
+        payload: { quizName, uid: uuidv1() }
     };
 }
 
@@ -59,7 +65,7 @@ export function setAnswerStatement(quiz, answerStatements, questionUid, answerUi
   const question = _(quiz.questions)
                 .filter(q => q.props.uid == questionUid)
                 .head();
-console.log(question)
+
   const answer = _(question.props.answers)
                 .filter(a => a.props.uid == answerUid)
                 .map(q => ({...q, props: {...q.props, answerStatements: answerStatements}}))
@@ -78,4 +84,40 @@ console.log(question)
       type: SET_ANSWER_STATEMENT,
       payload: {...quiz, questions: _.sortBy(questions, q => q.props.uid)}
   };
+}
+
+export function saveQuiz(quiz){
+  
+  const ciphertext = localStorage.getItem('quizzes');
+
+  const quizzes = _.isNil(ciphertext)? []: decrypt(ciphertext)
+
+  localStorage.setItem('quizzes', encrypt([...quizzes, quiz]))
+  return {
+      type: SAVE_QUIZ,
+      payload: quizzes
+  };
+
+}
+
+export function loadQuizzes(){
+  const ciphertext = localStorage.getItem('quizzes');
+
+  const quizzes = _.isNil(ciphertext)? []: decrypt(ciphertext)
+
+  return {
+      type: LOAD_QUIZZES,
+      payload: quizzes
+  };
+
+}
+
+
+function encrypt(obj){
+    return CryptoJS.AES.encrypt(JSON.stringify(obj), KEY);
+}
+
+function decrypt(ciphertext){
+  const bytes = CryptoJS.AES.decrypt(ciphertext.toString(), KEY);
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 }

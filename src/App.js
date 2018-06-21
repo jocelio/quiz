@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import FormContainer from "./js/components/container/FormContainer";
-import Quiz from "./js/components/container/Quiz";
+import NewQuiz from "./js/components/new-quiz/NewQuiz";
+import Quiz from "./js/components/quiz/Quiz";
+import Home from "./js/components/quiz/Home";
 import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={FormContainer}/>
-      <Route exact path='/quiz' component={Quiz}/>
+      <Route exact path='/' component={Home}/>
+      <Route exact path='/quiz/:uid' component={Quiz}/>
+      <Route exact path='/new-quiz' component={NewQuiz}/>
     </Switch>
   </main>
 )
@@ -28,7 +30,7 @@ class App extends Component {
                   </li>
 
                   <li><Link to='/'>Home</Link></li>
-                  <li><Link to='/quiz'>New Quiz</Link></li>
+                  <li><Link to='/new-quiz'>Create New Quiz</Link></li>
 
               </ul>
           </div>

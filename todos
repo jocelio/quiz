@@ -1,12 +1,12 @@
-Develop a Quiz application using React;
-The user can register a quiz, questions and answers;
+ok - Develop a Quiz application using React;
+ok - The user can register a quiz, questions and answers;
 ok - A quiz may have several questions;
 ok - A question may have several answers;
-When choosing a quiz, the user will be redirected to a page where he will list all the questions of that quiz and the answers to each question;
-When answering a question, you must tell whether the choice is correct or not;
-Each question must have at least 4 answers, one of them being the correct answer;
+ok - When choosing a quiz, the user will be redirected to a page where he will list all the questions of that quiz and the answers to each question;
+ok - When answering a question, you must tell whether the choice is correct or not;
+ok - Each question must have at least 4 answers, one of them being the correct answer;
 ok - Npm or yarn should be used to manage the dependencies;
 Create a README with installation guidelines;
 ok - Choose a theme (Bootstrap, Foundation...);
 ok - Use third-party libraries;
-Choose how you will save the data (local storage, database, json...);
+ok - Choose how you will save the data (local storage, database, json...);

@@ -2,7 +2,9 @@ import { CREATE_QUIZ
         , CREATE_QUESTION
         , SET_QUESTION_STATEMENT
         , CREATE_ANSWER
-        , SET_ANSWER_STATEMENT} from '../actions/quizActions'
+        , SET_ANSWER_STATEMENT
+        , SAVE_QUIZ
+        , LOAD_QUIZZES } from '../actions/quizActions'
 
 export default (state = [], action) => {
 
@@ -17,6 +19,10 @@ export default (state = [], action) => {
             return {newQuiz: action.payload}
         case SET_ANSWER_STATEMENT:
             return {newQuiz: action.payload}
+        case SAVE_QUIZ:
+            return {newQuiz:{questions: []}, quizzes: action.payload}
+        case LOAD_QUIZZES:
+            return {quizzes: action.payload}
 
         default:
             return state;
