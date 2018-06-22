@@ -12,7 +12,7 @@ To build a production version
 $  npm run build
 ```
 ## Preview
-### [Live Demo](https://lr889vknrm.codesandbox.io/)
+### [Live Demo](https://codesandbox.io/s/github/jocelio/quiz)
 Creating a new Quiz
 ![](https://image.ibb.co/eEv0vT/Screen_Shot_2018_06_22_at_12_13_53.png)
 Listing available Quizzes
@@ -20,4 +20,4 @@ Listing available Quizzes
 Answering a quiz
 ![](https://image.ibb.co/eaSfvT/Screen_Shot_2018_06_22_at_12_20_16.png)
 Showing the choise and the correct answer
-![](https://image.ibb.co/cHjSaT/Screen_Shot_2018_06_22_at_12_20_28.png)
+![](https://image.ibb.co/kp1ZN8/Screen_Shot_2018_06_22_at_12_40_43.png)
