@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id="wrapper">
+      <div id="wrapper" className="toggled">
           <div id="sidebar-wrapper">
               <ul className="sidebar-nav">
 
@@ -46,9 +46,7 @@ class App extends Component {
       </div>
     );
   }
-  componentDidMount(){
-    $("#wrapper").toggleClass("toggled");
-  }
+  
 }
 
 export default App;
