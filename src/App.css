@@ -50,15 +50,12 @@
 
 .correct-answer{
   color: green;
-  padding-left: 28px;
 }
 .wrong-answer{
   color: red;
-  padding-left: 28px;
 }
 .fade-answer{
   color:#9c9b9b;
-  padding-left: 28px;
 }
 
 

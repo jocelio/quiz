@@ -36,8 +36,14 @@ class Question extends Component {
                           :
                           <div>
                             {a.correctAnswer
-                                ? <span className={'correct-answer'}><strong>{a.answerStatement}</strong></span>
-                                : <span className={(a.answerStatement == answer.answerStatement)  ? 'wrong-answer':'fade-answer'}> <strong>{a.answerStatement}</strong></span>
+                                ?<div>
+                                    <input type="radio" checked={a.answerStatement == answer.answerStatement} disabled={true}/>
+                                    <span className={'correct-answer'}><strong> - {a.answerStatement}</strong></span>
+                                </div>
+                                :<div>
+                                    <input type="radio" checked={a.answerStatement == answer.answerStatement} disabled={true}/>
+                                    <span className={(a.answerStatement == answer.answerStatement)  ? 'wrong-answer':'fade-answer'}><strong> - {a.answerStatement}</strong></span>
+                                 </div>
                             }
                           </div>
                         }
