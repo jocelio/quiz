@@ -13,12 +13,16 @@ class Question extends Component {
   }
 
   addAnswer(){
+    /* pega dentre as questoes no redux aquela que é correspondente a essa instancia */
     const question = _(this.props.newQuiz.questions).filter(q => q.props.uid == this.props.uid ).head()
+    /* se a questao ainda nao tiver nenhuma resposta, adiciona campos de resposta, sendo um deles a resposta correta, caso contrário adiciona apenas um novo compo de resposta errada */
     const answers = _.isNil(question.props.answers)? _.range(0, 4)
     .map(i => <Answer correctAnswer={i == 0} key={i} uid={uuidv1()} parentUid={this.props.uid}/>) : <Answer uid={uuidv1()} parentUid={this.props.uid}/>
+    /* passa tudo para o redux */
     this.props.createAnswer(this.props.newQuiz, this.props.uid, answers)
   }
 
+  /* método usado para settar no redux o texto da questao */
   setQuestionStatement(statement){
     this.props.setQuestionStatement(this.props.newQuiz, statement, this.props.uid)
   }
@@ -32,7 +36,7 @@ class Question extends Component {
 
             <strong>Question</strong>
 
-            <input type="statement" className="form-control" id="question-statement" placeholder="Question text..."
+            <input type="text" className="form-control question-statement" placeholder="Question text..."
             defaultValue={this.props.statement}
             onBlur={event => this.setQuestionStatement(event.target.value)}/>
 
@@ -49,6 +53,7 @@ class Question extends Component {
 
   renderAnswer(){
     /* encontra no redux a questao referente a si mesmo */
+
     const self = _(this.props.newQuiz.questions).filter(q => q.props.uid == this.props.uid).head();
 
     if(_.isNil(self.props.answers)){

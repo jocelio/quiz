@@ -7,10 +7,11 @@ class Answer extends Component {
 
   constructor() {
     super();
-    this.state = {inputValue: '', isRightAnswer:false}
+    this.state = {inputValue: ''}
     this.timeout =  0;
   }
 
+  /* método usado para settar no redux o texto da resposta, é necessário informar a instancia do quiz no redux, o texto da resposta, se é uma resposta correta ou não, o uid da questao no qual a resposta pertence, e o uid da propria resposta */
   setAnswerStatement(inputValue){
     this.props.setAnswerStatement(this.props.newQuiz, {...inputValue, correctAnswer: this.props.correctAnswer}, this.props.parentUid, this.props.uid)
   }
@@ -21,9 +22,9 @@ class Answer extends Component {
   }
 
   render() {
-    const {inputValue} = this.props.answerStatements || ''
-    const {isRightAnswer} = this.props.answerStatements || false
-    const filled = !_.isNil(this.props.answerStatements)
+
+    const { inputValue } = this.props.answerStatements || ''
+
     return (
       <div className="row answer-row">
 

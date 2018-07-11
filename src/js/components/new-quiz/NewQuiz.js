@@ -15,22 +15,25 @@ class NewQuiz extends Component {
   }
 
   addQuestion(){
-      this.props.createQuestion(this.props.newQuiz, <Question uid={uuidv1()}/>)
+      this.props.createQuestion(this.props.newQuiz, <Question uid={uuidv1()}/>) /* adiciona uma nova questão usando o redux */
   }
 
   onCreateQuiz(){
+      /* Verifica se o nome para o novo quiz foi informado */
       if(_.isEmpty(this.state.quizName)){
         toast.warn("Quiz name is required", {
           position: toast.POSITION.TOP_RIGHT
         });
         return;
       }
-     this.props.createQuiz(this.state.quizName);
+     this.props.createQuiz(this.state.quizName); /* cria um novo quiz usando o redux e passando o nome informado */
      this.setState({started:true})
   }
 
   save(){
-
+    /* Transforma a estrutura de questoes e resposta que são objetos react em objetos json puros
+    * para serem validados e facilmente armazenados em localstorage
+    */
     const questions = _(this.props.newQuiz.questions).map(q => {
         /* shuffle embaralha as respostas antes de salvar  */
         const answers = _(q.props.answers).shuffle().map(a => {
@@ -41,8 +44,9 @@ class NewQuiz extends Component {
         return {statement, answers, uid}
     }).value()
 
+    /* pega todas as questoes que não possuem respostas */
     const noAnswers = _(questions).filter(q => _.isEmpty(q.answers)).value();
-
+    /* valida se existem questoes sem resposta */
     if(!_.isEmpty(noAnswers)){
       toast.warn("All questions must have its answers", {
         position: toast.POSITION.TOP_RIGHT
