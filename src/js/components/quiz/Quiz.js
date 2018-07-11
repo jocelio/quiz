@@ -18,7 +18,7 @@ class Quiz extends Component {
 
   render() {
 
-    const {uid} = this.props.match.params
+    const { uid } = this.props.match.params
 
     const quiz  = _(this.props.quizzes).filter(q => q.uid == uid).head()
 

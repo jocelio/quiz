@@ -48,16 +48,17 @@ class Question extends Component {
   }
 
   renderAnswer(){
+    /* encontra no redux a questao referente a si mesmo */
+    const self = _(this.props.newQuiz.questions).filter(q => q.props.uid == this.props.uid).head();
 
-    const that = _(this.props.newQuiz.questions).filter(q => q.props.uid == this.props.uid).head() ;
-
-    if(_.isNil(that.props.answers)){
+    if(_.isNil(self.props.answers)){
       return
     }
 
+    /* renderiza as respostas referentes questao */
     return(
       <div>
-        { _.map(that.props.answers, (a, i) =>
+        { _.map(self.props.answers, (a, i) =>
           <span key={i}>
             {a}
           </span>

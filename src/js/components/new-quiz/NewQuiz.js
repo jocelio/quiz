@@ -18,7 +18,7 @@ class NewQuiz extends Component {
       this.props.createQuestion(this.props.newQuiz, <Question uid={uuidv1()}/>)
   }
 
-  createQuiz(){
+  onCreateQuiz(){
       if(_.isEmpty(this.state.quizName)){
         toast.warn("Quiz name is required", {
           position: toast.POSITION.TOP_RIGHT
@@ -32,6 +32,7 @@ class NewQuiz extends Component {
   save(){
 
     const questions = _(this.props.newQuiz.questions).map(q => {
+        /* shuffle embaralha as respostas antes de salvar  */
         const answers = _(q.props.answers).shuffle().map(a => {
            const {inputValue, correctAnswer} = a.props.answerStatements
            return {answerStatement: inputValue, correctAnswer }
@@ -41,7 +42,7 @@ class NewQuiz extends Component {
     }).value()
 
     const noAnswers = _(questions).filter(q => _.isEmpty(q.answers)).value();
-    
+
     if(!_.isEmpty(noAnswers)){
       toast.warn("All questions must have its answers", {
         position: toast.POSITION.TOP_RIGHT
@@ -77,11 +78,13 @@ class NewQuiz extends Component {
         </h2>
 
         {!this.state.started &&
-            <button className="btn btn-primary" type="submit" onClick={() => this.createQuiz()}>Create</button>
+            <button className="btn btn-primary" type="submit" onClick={() => this.onCreateQuiz()}>Create</button>
         }
+
         <form onSubmit={() => this.save()}>
         {this.state.started &&
           <div>
+            {/* renderiza todas as questoes que foram adicionadas via redux */}
             {_.map(this.props.newQuiz.questions, q =>
               <div key={uuidv1()} className="question-container">
                 {q}

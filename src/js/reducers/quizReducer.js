@@ -6,6 +6,9 @@ import { CREATE_QUIZ
         , SAVE_QUIZ
         , LOAD_QUIZZES } from '../actions/quizActions'
 
+/*
+* estrutura convencional do redux
+*/
 export default (state = [], action) => {
 
     switch (action.type) {
